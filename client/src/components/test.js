@@ -5,12 +5,27 @@ class Test extends Component {
     
     componentDidMount() {
         this.getUserData();
+        this.getArticle();
     };
 
     async getUserData() {
-        const response = await axios.get('http://localhost:9000/user-data');
+        const response = await axios.get('/api/user-data');
 
         console.log('User Data Response: ' , response);
+    };
+
+    async getArticle() {
+        const response = await axios.get('/api/get-article');
+
+        console.log('Article: ',  response);
+    };
+
+    async sendData() {
+        const dataToSend = {
+            text: 'test text',
+            type: 'blah',
+            hee: 'ha'
+        }
     };
 
     render() {

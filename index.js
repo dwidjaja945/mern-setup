@@ -8,12 +8,29 @@ const app = express();
 //NOT to use in production
 app.use(cors());
 
-app.get('/user-data', (req, res) => {
+app.post('/api/send-data', (req, res) => {
+    console.log( "data send: " , req.body );
+    res.send({
+        success: true,
+        mirror: req.body
+    });
+});
+
+app.get('/api/user-data', (req, res) => {
     const user = {
         name: 'Dylan Widjaja',
         email: 'dylan@dylan.com'
     };
     res.send(user);
+});
+
+app.get('/api/get-article', (req, res) => {
+    const article = {
+        title: 'Some Article',
+        author: 'Rob Roy',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Cumque molestias ipsam, culpa accusantium nesciunt sint enim mollitia iure quia eaque beatae voluptatum natus itaque fugiat corporis dolor voluptas ducimus tempore esse repellendus? Rerum incidunt, quia ex reiciendis pariatur adipisci dolor ?'
+    }
+    res.send(article);
 });
 
 app.get('/', function(req, res) {
