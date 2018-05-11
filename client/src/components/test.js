@@ -6,6 +6,7 @@ class Test extends Component {
     componentDidMount() {
         this.getUserData();
         this.getArticle();
+        this.sendData();
     };
 
     async getUserData() {
@@ -25,7 +26,10 @@ class Test extends Component {
             text: 'test text',
             type: 'blah',
             hee: 'ha'
-        }
+        };
+
+        const response = await axios.post('/api/send-data', dataToSend);
+        console.log('Send Data Response: ' , response);
     };
 
     render() {

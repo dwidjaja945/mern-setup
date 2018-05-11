@@ -1,8 +1,14 @@
 const express = require('express');
 const cors = require("cors");
+const { resolve } = require('path');
 const PORT = process.env.PORT || 9000;
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded( { extended: false } ));
+app.use(express.static( __dirname + "/client" + "/dist"))
+// app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
 //This allows any computer/server to access my server. 
 //NOT to use in production
@@ -33,8 +39,9 @@ app.get('/api/get-article', (req, res) => {
     res.send(article);
 });
 
-app.get('/', function(req, res) {
-    res.send('<h1>App is working</h1>');
+app.get('*', (req, res) => {
+    // res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
+    res.sendFile(__dirname + "/client" + "/dist" + "/index.html");
 });
 
 app.listen(PORT, () => {
